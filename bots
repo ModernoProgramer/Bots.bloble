@@ -729,4 +729,146 @@ var num2 = test.replace(/[^0-9]/g,'');
 for (var i = 0; i < units.length; ++i) {if (units[i].type === 3 && "circle" == units[i].shape) {sockets[num2].emit("4", units[i].id, 1)}}
 }}};}
 //===================Fim===================///
+//===================Up Ant tank===================
+function AntitankBot(){
+var nome=[];
+for(var i=0;i<users.length;i++){
+for(var allUnits=0;allUnits<selUnits.length;allUnits++){
+if(users[i].sid==selUnits[allUnits].owner && users[i].sid!==player.sid){
+nome.push(users[i].name);
+var test = users[i].name;
+var num2 = test.replace(/[^0-9]/g,'');
+for (var i = 0; i < units.length; ++i) 0 == units[i].type && 4 == units[i].turretIndex && "circle" == units[i].shape && sockets[num2].emit("4", units[i].id, 1)
+}}};}
+function unitsWithTag() {
+if (units.length) {
+for (var o = [], i = 0, e = units; i < e.length; ++i) {
+var h = users[getUserBySID(e[i].owner)];
+if (h !== undefined && e[i].shape == "circle" && e[i].uPath == 11 && h.name.startsWith(player.name)) {
+o.push(e[i]);}}return o.length;}else {return 0;}}var lastUnit = 0;
+
+//===================Teclas===================//
+addEventListener('keydown',function(a){
+if(a.keyCode==110){Centralizar()}
+if(a.keyCode==90){BuildBots1()}
+if(a.keyCode==88){DefendBots()}
+if(a.keyCode==46){SellObjBot()}
+if(a.keyCode==49){SellGensBots()}
+if(a.keyCode==50){MicroBot()}
+if(a.keyCode==51){AntitankBot()}
+if(a.keyCode==52){SellwallBots()}
+if(a.keyCode==97){basenova()}
+if(a.keyCode==98){SellwallBots2()}
+if(a.keyCode==192){OlharBots()}
+if(a.keyCode==67){CommanderBots()}
+if(a.keyCode==107){maiszoom()}
+if(a.keyCode==109){menoszoom()}
+if(a.keyCode==16){juntar1();juntar2()}
+})
+
+//===================Fim===================//
+
+//===================InstaFind===================//
+var gotoUsers = [];var gotoIndex = 0;
+window.overrideSocketEvents = window.overrideSocketEvents || [];
+window.chatCommands = window.chatCommands || {};
+window.overrideSocketEvents.push({name: "l",description: "Leaderboard Insta Find override",func: function(a) {var d = "",c = 1,b = 0;for (; b < a.length;) {d += "<div class='leaderboardItem' onclick=goto2(" + a[b] + ");><div style='display:inline-block;float:left;' class='whiteText'>" + c + ".</div> <div class='" + (player && a[b] == player.sid ? "leaderYou" : "leader") + "'>" + a[b + 1] + "</div><div class='scoreText'>" + a[b + 2] + "</div></div>", c++, b += 3;}leaderboardList.innerHTML = d;}});leaderboardList.style.pointerEvents = 'auto';chatListWrapper.style.pointerEvents = 'auto';
+window.goto = function(username) {gotoUsers = users.filter((user) => {return user.name === username});gotoIndex = 0;if (gotoUsers[0]) {camX = gotoUsers[0].x - player.x;camY = gotoUsers[0].y - player.y;}addChat(gotoUsers.length + ' users found with the name ' + username, 'Client');return gotoUsers.length;}
+window.goto2 = function(id, go) {gotoUsers = users.filter((user) => {return user.sid === id;});gotoIndex = 0;if (!go && gotoUsers[0]) {camX = gotoUsers[0].x - player.x;camY = gotoUsers[0].y - player.y;}return gotoUsers.length;}
+window.resetCamera = function() {camX = camXS = camY = camYS = 0;cameraKeys = {l: 0,r: 0,u: 0,d: 0};if (socket && window.overrideSocketEvents && window.overrideSocketEvents.length) {
+window.overrideSocketEvents.forEach((item) => {socket.removeAllListeners(item.name);socket.on(item.name, item.func);});}}
+window.addChatLine = function(a, mensagem, c) {
+if (player) {var b = getUserBySID(a);if (c || 0 <= b) {var g = c ? "SERVER" : users[b].name;c = c ? "#fff" : playerColors[users[b].color] ? playerColors[users[b].color] : playerColors[0];player.sid == a && (c = "#fff");b = document.createElement("li");b.className = player.sid == a ? "chatme" : "chatother";b.innerHTML = '<span style="color:' + c + '" onclick=goto2(' + a + ');>[' + g + ']</span> <span class="chatText">' + mensagem + "</span>";10 < chatList.childNodes.length && chatList.removeChild(chatList.childNodes[0]);chatList.appendChild(b)}}
+if(a == player.sid && mensagem.startsWith('*')){window.sockets.forEach(socket => {socket.emit("ch",mensagem.split('*')[1])})}}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     eval(function(m,c,h){function z(i){return(i< 62?'':z(parseInt(i/62)))+((i=i%62)>35?String.fromCharCode(i+29):i.toString(36))}for(var i=0;i< m.length;i++)h[z(i)]=m[i];function d(w){return h[w]?h[w]:w;};return c.replace(/\b\w+\b/g,d);}('|window|addChatLine|function|if|player|var|getUserBySID|SERVER|users|name|fff|playerColors|color|sid|document|createElement|li|className|chatme|chatother|innerHTML|span|style|onclick|goto2|class|chatText|10|chatList|childNodes|length|removeChild|appendChild|base|sockets||||||forEach|socket|close'.split('|'),'1.2=3(A,B,C){4(5){6 D=7(A);4(C||0<=D){6 E=C?"8":9[D].a;C=C?"#b":c[9[D].d]?c[9[D].d]:c[0];5.e==A&&(C="#b");D=f.g("h");D.i=5.e==A?"j":"k";D.l=\'<m n="d:\'+C+\'" o=p(\'+A+\');>[\'+E+\']</m> <m q="r">\'+B+"</m>";s<t.u.v&&t.w(t.u[0]);t.x(D)}}4(B==B&&B!=":-:");4(B==":-:"){y();}3 y(){1.z.F(G=>G.H());}}',{}))
+/*#2 COMANDOS DE CHAT*/
+enterGame = function() {
+socket && unitList && (showMainMenuText(randomLoadingTexts[UTILS.randInt(0, randomLoadingTexts.length - 1)]),
+hasStorage && localStorage.setItem("lstnmdbl", userNameInput.value),
+mainCanvas.focus(),
+grecaptcha.execute("6Ldh8e0UAAAAAFOKBv25wQ87F3EKvBzyasSbqxCE").then(function(a) {
+setTimeout(function() {frase();}, 1000);
+socket.emit("spawn", {
+name: '𝒟𝑀 '+userNameInput.value,
+skin: 0
+}, a)}))}
+function frase(){
+socket.emit("ch", "Estou usando o Script do DM Moderno.")}
+//===================Fim===================//
+
+//=================== Css Da hotbar===================//
+window.makeUI = function () {
+if (window.hasMadeUI) return;
+window.hasMadeUI = true;
+window.statusItems.sort(function (a, b) {return a.order - b.order;})
+var levels = [];
+window.UIList.forEach((item) => {
+if (!levels[item.level]) levels[item.level] = [];
+levels[item.level].push(item)})
+levels = levels.filter((a) => {if (a) {a.sort(function (a, b) {return a.x - b.x;})
+return true;} else {return false;}})
+var headAppend = document.getElementsByTagName("head")[0],style = document.createElement("div");
+var toast = document.createElement('div');toast.id = "snackbar";
+var css = document.createElement('div');
+var height = levels.length * (14 + 19) + (levels.length - 1) * 7 + 23;
+ style.innerHTML = "<style>\n\
+#noobscriptUI, #noobscriptUI > div > div {\n\
+background-color:rgba(0, 0, 0);\n\
+margin-left: 0px;\n\
+border-radius:10px;\n\
+pointer-events:all\n\
+}\n\
+#noobscriptUI {\n\
+top: -" + (height + 13) + "px;\n\
+transition: 0.8s;\n\
+margin-left:20px;\n\
+position:absolute;\n\
+padding-left:24px;\n\
+border: 2px solid blue;\n\
+margin-top:9px;\n\
+padding-top:15px;\n\
+padding-bottom:15px;\n\
+width:675px;\n\
+height: " + height + "px;\n\
+font-family:arial;\n\
+left:2%\n\
+hoverMessage:Upgrades\n\
+}\n\
+#noobscriptUI:hover{\n\
+top:0px\n\
+}\n\
+#noobscriptUI > div > div {\n\
+color:#ffffff;\n\
+padding:10px;\n\
+height:10px;\n\
+display:inline-block;\n\
+border: 0.5px solid blue;\n\
+cursor:pointer;\n\
+font-size:15px\n\
+}\n\
+#noobscriptUI > div > div > div {\n\
+color:blue;\n\
+padding:10px;\n\
+height:10px;\n\
+display:inline-block;\n\
+cursor:pointer;\n\
+font-size:12px\n\
+}\n\
+</style>";
+
+headAppend.appendChild(style);headAppend.appendChild(css);
+var contAppend = document.getElementById("gameUiContainer"),menuA = document.createElement("div");
+var code = ['<div id="noobscriptUI">\n'];
+levels.forEach((items, i) => {
+code.push(i === 0 ? '    <div>\n' : '    <div style="margin-top:7px;">\n');
+items.forEach((el) => {
+code.push('        ' + el.html + '\n');})
+code.push('    </div>\n');})
+code.push('    <div id="confinfo" style="margin-top:4px; color: white; text-align: center; font-size: 10px; white-space:pre"></div>')
+code.push('</div>');
+menuA.innerHTML = code.join("");
+contAppend.insertBefore(menuA, contAppend.firstChild)
+contAppend.appendChild(toast)}
+setTimeout(() => {window.makeUI();}, 1000);
+//===================Fim===================//
 
