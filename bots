@@ -525,3 +525,103 @@ id++;
 });
 }
 function BotAmout(number, botName) {for (var i = 0; i < number; i++) {newSocket(botName);}}
+//===================Fim===================//
+
+//===================Centralizar===================//
+function Centralizar() {
+if(player.x==null){player.x=0};if(player.y==null){player.y=0};
+for (var e = [], b = 0; b < Math.floor(selUnits.length-0); ++b) e.push(selUnits[b].id);socket.emit("5", (player.x)-1, (player.y)+1, e, 0, -1);
+for (var e = [], b = 0; b < Math.floor(selUnits.length-0); ++b) e.push(selUnits[b].id);socket.emit("5", (player.x)+1, (player.y)-1, e, 0, -1);
+for (var e = [], b = 0; b < Math.floor(selUnits.length-0); ++b) e.push(selUnits[b].id);socket.emit("5", (player.x)*1, (player.y)*1, e, 0, -1);
+for (var e = [], b = 0; b < Math.floor(selUnits.length-0); ++b) e.push(selUnits[b].id);socket.emit("5", (player.x), (player.y), e, 0, -1);
+var X=[],Y=[];
+for(var i=0;i<users.length;i++){
+for(var allUnits=0;allUnits<selUnits.length;allUnits++){
+if(users[i].sid==selUnits[allUnits].owner && users[i].sid!==player.sid){if(users[i].x==null){users[i].x=0}if(users[i].y==null){users[i].y=0}X.push(users[i].x);Y.push(users[i].y);}}};
+for (var e = [], b = 0; b < Math.floor(selUnits.length-0); ++b)for(var B=0;B<window.sockets.length;B++){ e.push(selUnits[b].id);sockets[B].emit("5", (X)-1, (Y)+1, e, 0, -1);}
+for (var e = [], b = 0; b < Math.floor(selUnits.length-0); ++b)for(var B=0;B<window.sockets.length;B++){ e.push(selUnits[b].id);sockets[B].emit("5", (X)+1, (Y)-1, e, 0, -1);}
+for (var e = [], b = 0; b < Math.floor(selUnits.length-0); ++b)for(var B=0;B<window.sockets.length;B++){ e.push(selUnits[b].id);sockets[B].emit("5", (X)*1, (Y)*1, e, 0, -1);}
+for (var e = [], b = 0; b < Math.floor(selUnits.length-0); ++b)for(var B=0;B<window.sockets.length;B++){ e.push(selUnits[b].id);sockets[B].emit("5", (X), (Y), e, 0, -1);}
+if (unitsWithTag() !== 0) {
+for (var i = lastUnit, e = units, h = e.length * 2; i < h; ++i) {if (i == h) {break;}if (i == e.length) {i = 0;}if (units[i] !== undefined) {var o = users[getUserBySID(units[i].owner)];if (o !== undefined && o.sid !== player.sid && o.name.startsWith(player.name) && e[i].shape == "circle" && e[i].uPath==11) {selUnits = [];camX = units[i].x - player.x;camY = units[i].y - player.y;
+selUnits.push(units[i]);
+if (i == e.length) { lastUnit = 0; }
+else { lastUnit = 1 + i; }
+break;
+}}}}};
+
+//===================Fim===================//
+
+//===================Select gens===================//
+function SelectGens(){
+var nome=[];
+for(var i=0;i<users.length;i++){
+for(var allUnits=0;allUnits<selUnits.length;allUnits++){
+if(users[i].sid==selUnits[allUnits].owner && users[i].sid!==player.sid){
+nome.push(users[i].sid);
+var test = users[i].sid;
+console.log(test);
+selUnits = [];
+units.forEach((unit) => {
+if (unit.owner === test && unit.type === 0) {
+if (!unit.info) unit.info = getUnitFromPath(unit.uPath);
+if(unit.info.name === 'Generator' || 'Power Plant' && unit.info.name !== 'Armory'){
+selUnits.push(unit);
+return false;}}
+return true;});
+selUnitType = "Unit";
+}}}}
+//===================Fim===================//
+
+//===================Vender as coisas===================//
+function Sell(){
+if (selUnits.length) {
+for (var a = [], d = 0; d < selUnits.length; ++d)
+a.push(selUnits[d].id);
+for(var i=0; i<window.sockets.length; i++){sockets[i].emit("3", a);}
+}}
+//===================Fim===================//
+
+//===================Select Wall===================//
+function Selectwall(){
+var nome=[];
+for(var i=0;i<users.length;i++){
+for(var allUnits=0;allUnits<selUnits.length;allUnits++){
+if(users[i].sid==selUnits[allUnits].owner && users[i].sid!==player.sid){
+nome.push(users[i].sid);
+var test = users[i].sid;
+console.log(test);
+selUnits = [];
+units.forEach((unit) => {
+if (unit.owner === test && unit.type === 3) {
+if (!unit.info) unit.info = getUnitFromPath(unit.uPath);
+if(unit.info.name === 'Wall'){
+selUnits.push(unit);
+return false;}}
+return true;});
+selUnitType = "Unit";
+}}}}
+//===================Fim===================//
+
+//===================Power Plant=============//
+function power(){
+var nome=[];
+for(var i=0;i<users.length;i++){
+for(var allUnits=0;allUnits<selUnits.length;allUnits++){
+if(users[i].sid==selUnits[allUnits].owner && users[i].sid!==player.sid){
+nome.push(users[i].name);
+var test = users[i].name;
+var num2 = test.replace(/[^0-9]/g,'');
+for (var i = 0; i < units.length; ++i) {if (units[i].type === 0 && "hexagon" == units[i].shape) {sockets[num2].emit("4", units[i].id, 0)}}
+    var nome=[];
+for(var i=0;i<users.length;i++){
+for(var allUnits=0;allUnits<selUnits.length;allUnits++){
+if(users[i].sid==selUnits[allUnits].owner && users[i].sid!==player.sid){
+nome.push(users[i].name);
+var test = users[i].name;
+var num2 = test.replace(/[^0-9]/g,'');
+for (var i = 0; i < units.length; ++i) {if (units[i].type === 3 && "circle" == units[i].shape) {sockets[num2].emit("4", units[i].id, 1)}}}}}}
+}}};
+
+//===================Fim===================//
+
