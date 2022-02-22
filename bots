@@ -1,0 +1,20 @@
+var cameraSpd = 3.0;
+var lastAlly = 0;
+var joinEnabled = true;
+//===================Tema==================//
+function theme(){
+darkColor = "blue", backgroundColor = "#000", outerColor = "#050505", indicatorColor = "#fff", turretColor = "#00000099", bulletColor = "#A8A8A8", redColor = "blue", targetColor = "#b4b4b4"; playerColors = "#f9ff6070 #ff606070 #82ff6070 #607eff70 #60eaff70 #ff60ee70 #e360ff70 #ffaf6070 #a3ff6070 #ff609c70 #60ff8270 #cc60ff70 #c6595970 #404b7f70 #f2d95770 #c5525270 #c5525270 #498e5670 #c4515170 #c3545470 #c8575770 #c8595970 #5b74b670 #cd686870 #5c81bd70 #5bb14670 #d8c96370 #c5525270 #404b7f70 #c5525270 #c5525270 #c5525270 #c5525270 #404b7f70 #498e5670 #498e5670 #dbd24570 #ca514e70 #43427e70".split(" ");
+} theme();
+//===================Fim===================//
+instructionsIndex = 0;
+instructionsSpeed = 0;
+insturctionsCountdown = 0;
+instructionsList = "".split(";");
+instructionsIndex = UTILS.randInt(0, instructionsList.length - 1);
+document.getElementById("gameTitle").innerHTML = "𝒟𝑀 Moderno";
+document.getElementById("lobbyKey").innerHTML = "Party code";
+document.getElementById("smallAdContainer").innerHTML = '';
+document.getElementById("infoLinks").innerHTML = '';
+document.getElementById("creatorLink").innerHTML = '';
+document.getElementById("adContainer").innerHTML = ''
+var randomLoadingTexts = ["Carregando ..."]
