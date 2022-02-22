@@ -239,3 +239,31 @@ e.drawImage(f,-(f.width/2),-(f.height/2),f.width,f.height);
 renderText=function(a, d) { var c = document.createElement("canvas") , b = c.getContext("2d"); b.font = d + "px regularF"; var g = b.measureText(a); c.width = g.width + 20; c.height = 2 * d; b.translate(c.width / 2, c.height / 2); b.font = d +"px regularF"; b.fillStyle = "#000"; b.textBaseline = "middle"; b.textAlign = "center"; b.strokeStyle = darkColor; b.lineWidth = outlineWidth; b.strokeText(a, 0, 0); b.fillText(a, 0, 0); return c }
 //===================Fim===================//
 
+//===================Hotbar===================//
+window.autoDefense = false;
+window.UIList = window.UIList || [];
+window.initFuncs = window.initFuncs || [];
+window.statusItems = window.statusItems || [];
+window.UIList.push({
+//////////////////////////////////////////////////////////////////////////////////////////
+level:0,x:0,html:'<div id="res" onclick=setRes()>Res(0)</div>'}, {
+level:0,x:1,html: '<div id="fps" onclick=setFPS()>FPS</div>'}, {
+level:0,x:2,html:'<div onclick=botsmais()>+Bots+</div>'},{
+level:0,x:3,html:'<div id="player2" ()>Bots:</div>'},{
+level:0,x:4,html:'<div onclick=botsmenos()>-Bots-</div>'},{
+level:0,x:5,html: '<div id=auto onclick=olharbot()>Olhar Bot: Off</div>'},{
+level:0,x:6,html:'<div onclick=buildbase0()>ATK Auto</div>'},{
+level:0,x:7,html:'<div onclick=buildbase7()>Base auto</div>'},{
+//////////////////////////////////////////////////////////////////////////////////////////
+level:1,x:0,html:'<div onclick=buildbase1()>Build Gens</div>'},{
+level:1,x:1,html:'<div onclick=buildbase2()>Sell Barrack</div>'},{
+level:1,x:2,html:'<div onclick=buildbase3()>Build Barracks</div>'},{
+level:1,x:3,html:'<div onclick=buildbase4()>Barrack Soldiers</div>'},{
+level:1,x:4,html:'<div onclick=buildbase5()>Build AntiTanks</div>'},{
+level:1,x:5,html:'<div onclick=buildbase6()>Full Atk</div>'},{
+//////////////////////////////////////////////////////////////////////////////////////////
+level:2,x:0,html:'<div onclick=tela()>Full  tela</div>'},{
+level:2,x:1,html:'<div onclick=Discord()>Discord</div>'},{
+});
+//===================Fim===================//
+
